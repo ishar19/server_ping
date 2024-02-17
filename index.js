@@ -13,9 +13,7 @@ app.get("/", (req, res) => {
   res.send("Express app is running!");
 });
 
-// Define a cron job that runs every minute
 cron.schedule("* * * * *", () => {
-  // Make a GET request to the target server to prevent it from going to sleep
   axios
     .get(targetServerUrl)
     .then((response) => {
@@ -30,7 +28,8 @@ cron.schedule("* * * * *", () => {
     });
 });
 
-// Start the Express app
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}`);
 });
+
+module.exports = app;
